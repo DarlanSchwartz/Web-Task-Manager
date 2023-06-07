@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import MainPage from './Pages/MainPage'
 import GlobalStyle from './globalStyle'
+import MainContext from './Contexts/MainContext';
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [darkMode , setDarkMode ] = useState(false);
+
 
   return (
-    <>
-    <GlobalStyle/>
+    <MainContext.Provider value={{sidebarOpen,setSidebarOpen,darkMode,setDarkMode}}>
+      <GlobalStyle/>
       <MainPage/>
-    </>
+    </MainContext.Provider>
   )
 }

@@ -14,7 +14,11 @@ html,body{
 
 #root{
     height: 100%;
-    background-color: black;
+    background-color: #21212D;
+}
+
+button{
+    cursor: pointer;
 }
 
 `;
