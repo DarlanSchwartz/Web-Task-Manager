@@ -43,6 +43,7 @@ const CollumnDiv = styled.div`
     color: #b8b8b8;
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
     h1{
         margin-top: 10px;
         font-size: 18px;
