@@ -30,6 +30,7 @@ const HeaderDiv = styled.div`
     justify-content: space-between;
     background-color: #2C2C38;
     transition: all 200ms;
+    border-bottom: 1px solid #3C3C48;
 .nav-btns{
     display: flex;
     align-items: center;
