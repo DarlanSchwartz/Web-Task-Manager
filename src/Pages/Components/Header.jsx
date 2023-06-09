@@ -2,18 +2,19 @@ import { styled } from "styled-components";
 import MainContext from "../../Contexts/MainContext";
 import { useContext } from "react";
 import {BsThreeDotsVertical} from 'react-icons/bs';
-import {BiChevronDown} from 'react-icons/bi'
+import {BiChevronDown} from 'react-icons/bi';
+import logo from '../../assets/logo.png';
 
 
 export default function Header()
 {
-    const {darkMode , sidebarOpen,setSidebarOpen ,setInCreationMode} = useContext(MainContext);
+    const {darkMode , sidebarOpen,setSidebarOpen ,setInCreationMode,selectedBoard} = useContext(MainContext);
     
     return(
         <HeaderDiv side_open = {sidebarOpen.toString()}>
             <div className="header-title">
-                {!sidebarOpen && <img src="https://cdn-icons-png.flaticon.com/512/6579/6579010.png" alt="logo" />}
-                <h1 >Platform Launch</h1>
+                {!sidebarOpen && <img src={logo} alt="logo" />}
+                <h1>{selectedBoard.title}</h1>
                 {!sidebarOpen && <BiChevronDown onClick={() => setSidebarOpen(true)} className="arrow"/>}
             </div>
             <div className="nav-btns">
@@ -30,7 +31,7 @@ const HeaderDiv = styled.div`
     justify-content: space-between;
 
     height: 100px;
-    width: ${(props) => props.side_open == 'true' ? 'calc(100% - 300px)' : '100%'};
+    width: ${(props) => props.side_open == 'true' ? 'calc(100% - 280px)' : '100%'};
 
     position: fixed;
     top: 0;
@@ -88,6 +89,10 @@ const HeaderDiv = styled.div`
             color: #645FC6;
             font-size: 30px;
             cursor: pointer;
+
+            &:hover{
+                color: white;
+            }
         }
         
         img{

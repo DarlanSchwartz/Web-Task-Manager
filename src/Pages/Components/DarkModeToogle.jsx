@@ -29,7 +29,7 @@ const DarkButton = styled.button`
     height: 50px;
 
     position: absolute;
-    left:  20px;
+    left:  10px;
     bottom: 100px;
 
     border: 0;
@@ -55,6 +55,11 @@ const DarkButton = styled.button`
         align-items: center;
         position: relative;
         cursor: pointer;
+        transition: all 200ms;
+
+        &:hover{
+            background-color: ${(props) => props.on == 'true' ? '#7a75e6' : '#ffffff42'};
+        }
     }
 
     .darkmode-slider-btn{

@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
 import Task from "./Task";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Collumn(props)
 {
-    const {title,column_color,len} = props;
+    const {title,column_color,len,tasks} = props;
     
     return(
         <CollumnDiv column_color={column_color}>
@@ -11,7 +12,10 @@ export default function Collumn(props)
                     <div className="column-color"></div>
                     <h1>{title} ({len})</h1>
                 </div>
-                <Task title='Test asdhuhsd saduhdsa sadjhsd ads dsah' subtasks_len={4} subtasks_done={0}/>
+                {tasks && tasks.length > 0 && tasks.map((task,index) =>{
+                    return <Task key={uuidv4()} task={task}/>;
+                })}
+                
         </CollumnDiv>
     );
 }
@@ -41,7 +45,6 @@ const CollumnDiv = styled.div`
         gap: 10px;
 
         margin-top: 10px;
-        margin-bottom: 10px;
 
     h1{
     

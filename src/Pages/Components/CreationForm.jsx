@@ -10,7 +10,7 @@ export default function CreationForm()
     const title = useRef();
     const description = useRef();
     const status = useRef();
-    const {setInCreationMode} = useContext(MainContext);
+    const {setInCreationMode , selectedBoard} = useContext(MainContext);
     const [subtasks, setSubtasks] = useState([{placeholder:'e.g. Make coffe', id:0},{placeholder:'e.g. Drink coffe and smile',id:1}]);
 
 
@@ -33,7 +33,7 @@ export default function CreationForm()
     }
     
     return(
-        <Modal onClick={() => setInCreationMode(false)}>
+        <Modal onClick={(e) => {setInCreationMode(false); e.stopPropagation()}}>
             <CreateForm onSubmit={(e) => {e.preventDefault(); setInCreationMode(false)}} onClick={(e) => e.stopPropagation()}>
                 <h1>Add New Task</h1>
                 <label htmlFor="title">Title</label>
@@ -43,7 +43,7 @@ export default function CreationForm()
                 <label htmlFor="subtasks0">Subtasks</label>
                 {subtasks.map((subtask,index) =>{
                     return (
-                    <div className="subtask-container">
+                    <div key={uuidv4()} className="subtask-container">
                         <input className="subtask" type="text" id={'subtasks' + index} name={"subtasks" + index} placeholder={subtask.placeholder} key={subtask.id}/>
                         <RiDeleteBack2Fill onClick={() => deleteSubtask(subtask.id)} className="delete-icon"/>
                     </div>
@@ -53,9 +53,9 @@ export default function CreationForm()
                 <label>Status</label>
                 <div className="select-container">
                     <select  ref={status}>
-                        <option>Todo</option>
-                        <option>Doing</option>
-                        <option>Done</option>
+                        {selectedBoard.columns.map((col) => {
+                            return <option key={uuidv4()}>{col.columnTitle}</option>
+                        })}
                     </select>
                     <BsChevronDown className="dropdown-btn"/>
                 </div>
@@ -205,6 +205,7 @@ const CreateForm = styled.form`
         appearance: none;
         font-size: 15px;
         font-weight: 500;
+        border: 1px solid #3C3C48;
        
         &:focus{
            outline: none;
@@ -240,3 +241,5 @@ const Modal = styled.div`
     top: 0;
     z-index: 5;
 `;
+
+export {Modal};
