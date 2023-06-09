@@ -8,7 +8,7 @@ export default function DarkModeButton()
 {
     const {darkMode , setDarkMode, sidebarOpen} = useContext(MainContext);
     return(
-        <DarkButton open={sidebarOpen} on={darkMode}>
+        <DarkButton open={sidebarOpen} on={darkMode.toString()}>
             <div className='toggle-elements'>
                 <BsFillSunFill height={420} width={40}/> 
                     <div className='darkmode-slider' onClick={()=> setDarkMode(!darkMode)}>
@@ -28,8 +28,8 @@ const DarkButton = styled.button`
     width: 260px;
     height: 50px;
 
-    position: fixed;
-    left:  ${(props) => props.open ? '20px' : '-300px'};
+    position: absolute;
+    left:  20px;
     bottom: 100px;
 
     border: 0;
@@ -37,6 +37,8 @@ const DarkButton = styled.button`
     background-color: #202029;
     color: #ffffff94;
     cursor: auto;
+    transition: all 200ms;
+
 
     .toggle-elements{
         display: flex;
@@ -48,7 +50,7 @@ const DarkButton = styled.button`
         width: 40px;
         height: 18px;
         border-radius: 20px;
-        background-color: ${(props) => props.on ? '#645FC6' : 'gray'};
+        background-color: ${(props) => props.on == 'true' ? '#645FC6' : 'gray'};
         display: flex;
         align-items: center;
         position: relative;
@@ -58,9 +60,9 @@ const DarkButton = styled.button`
     .darkmode-slider-btn{
         width: 14px;
         height: 14px;
-        
+
         position: absolute;
-        left: ${(props) => props.on ? '24px' : '1px'};
+        left: ${(props) => props.on == 'true' ? '24px' : '1px'};
         top: 2px;
 
         border-radius: 50%;

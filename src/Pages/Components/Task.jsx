@@ -14,25 +14,27 @@ export default function Task(props)
 
 const TaskDiv = styled.div`
 
-border-radius: 10px;
-width: 100%;
-height: auto;
-cursor: pointer;
+    width: 100%;
+    height: auto;
 
-background-color: #2C2C38;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #2C2C38;
 
     h1{
-        color: white;
         margin-left: 10px;
-        font-size: 15px;
         margin-top: 20px;
+
+        color: white;
+        font-size: 15px;
     }
 
     p{
-        color: #9e9e9e;
         margin-left: 10px;
-        font-size: 11px;
         margin-top: 10px;
         margin-bottom: 10px;
+
+        color: #9e9e9e;
+        font-size: 11px;
     }
 `;

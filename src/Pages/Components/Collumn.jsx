@@ -17,35 +17,45 @@ export default function Collumn(props)
 }
 
 const CollumnDiv = styled.div`
+
     height: 100%;
     width: 300px;
+
     margin-left: 20px;
-    color: #b8b8b8;
+    
     display: flex;
     justify-content: flex-start;
     flex-shrink: 0;
     flex-direction: column;
+
+    color: #b8b8b8;
+
     .column-top{
-        margin-top: 10px;
+
         width: 100%;
+        height: 40px;
+        
         display: flex;
         justify-content: flex-start;
-        gap: 10px;
         align-items: center;
-        height: 40px;
-        margin-bottom: 10px;
-            h1{
-            
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        gap: 10px;
 
-        .column-color{
-            background-color: ${(props) => props.column_color};
-            border-radius: 50%;
-            width: 15px;
-            height: 15px;
-        }
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+    h1{
+    
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
+
+    .column-color{
+        width: 15px;
+        height: 15px;
+
+        background-color: ${(props) => props.column_color};
+        border-radius: 50%;
+    }
+}
 `;

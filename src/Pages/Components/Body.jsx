@@ -3,7 +3,7 @@ import { useContext } from "react";
 import MainContext from "../../Contexts/MainContext";
 import Collumn from "./Collumn";
 export default function Body() {
-    const { darkMode, setDarkMode, sidebarOpen, setSidebarOpen } = useContext(MainContext);
+    const { darkMode, sidebarOpen } = useContext(MainContext);
     return (
         <BodyDiv side_open={sidebarOpen.toString()}>
             <Collumn column_color='red' len={10} title='Todo'/>
