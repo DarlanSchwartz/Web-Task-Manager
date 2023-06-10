@@ -16,7 +16,6 @@ export default function Subtask({ done, title, id, viewing_task_col_id, viewing_
                     if (t.id == viewing_task_id) {
                         t.subtasks.forEach(subt => {
                             if (subt.id == id) {
-                                console.log(subt.id, id)
                                 subt.done = value;
                             }
                         })

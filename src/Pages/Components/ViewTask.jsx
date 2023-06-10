@@ -27,8 +27,8 @@ export default function ViewTask(props) {
                     <h1>{viewingTask.taskTitle}</h1>
                     <BsThreeDotsVertical onClick={()=> showDangerOptions()} className="dots" />
                 </div>
-                <p className="description">{viewingTask.taskDescription}</p>
-                <h2 className="subtasks-header">Subtasks ({viewingTask.subtasks.filter((sub) => sub.done == true).length} of {viewingTask.subtasks.length})</h2>
+                {viewingTask.taskDescription != '' && <p className="description">{viewingTask.taskDescription}</p>}
+                {viewingTask.subtasks.length > 0 && <h2 className="subtasks-header">Subtasks ({viewingTask.subtasks.filter((sub) => sub.done == true).length} of {viewingTask.subtasks.length})</h2>}
                 {viewingTask.subtasks.map((subtask) => {
                     return <Subtask viewing_task_col_id={viewingTaskColId} viewing_task_id ={viewingTask.id} id={subtask.id} key={uuidv4()} title={subtask.subtaskTitle} done={subtask.done}/>
                 })}
@@ -50,7 +50,7 @@ export default function ViewTask(props) {
 
 const ViewTaskDiv = styled.div`
     width: 480px;
-    min-height: 272px;
+    //min-height: 272px;
 
     display: flex;
     flex-direction: column;
