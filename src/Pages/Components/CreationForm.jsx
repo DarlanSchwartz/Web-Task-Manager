@@ -10,10 +10,8 @@ export default function CreationForm()
     const title = useRef();
     const description = useRef();
     const status = useRef();
-    const {setInCreationMode , selectedBoard} = useContext(MainContext);
+    const {setInCreationMode , selectedBoard,setSelectedBoard} = useContext(MainContext);
     const [subtasks, setSubtasks] = useState([{placeholder:'e.g. Make coffe', id:0},{placeholder:'e.g. Drink coffe and smile',id:1}]);
-
-
 
     function deleteSubtask(id)
     {
@@ -31,10 +29,51 @@ export default function CreationForm()
 
         setSubtasks([...subtasks,newSubtask]);
     }
+
+    function addTask(e)
+    {
+        let copy = {...selectedBoard};
+        e.preventDefault();
+
+
+        let subtasksArr = [];
+
+       
+        document.querySelectorAll('.subtask').forEach(subtask => {
+            subtasksArr.push(
+                {
+                    id:uuidv4(),
+                    subtaskTitle: subtask.value,
+                    done: false,
+                }
+            );
+        });
+
+
+        copy.columns.forEach(col => {
+            if(col.columnTitle == status.current.value)
+            {
+                const newObj = {
+                    id:uuidv4(),
+                    taskTitle: title.current.value,
+                    taskDescription: description.current.value,
+                    subtasks:subtasksArr
+                }
+
+                col.tasks = [...col.tasks,newObj];
+            } 
+        });
+        
+
+        setSelectedBoard(copy);
+
+        setInCreationMode(false);
+        
+    }
     
     return(
         <Modal onClick={(e) => {setInCreationMode(false); e.stopPropagation()}}>
-            <CreateForm onSubmit={(e) => {e.preventDefault(); setInCreationMode(false)}} onClick={(e) => e.stopPropagation()}>
+            <CreateForm onSubmit={(e) => {addTask(e)}} onClick={(e) => e.stopPropagation()}>
                 <h1>Add New Task</h1>
                 <label htmlFor="title">Title</label>
                 <input required className="title" type="text" placeholder="e.g. Take coffe break" id="title" name="title" ref={title}/>

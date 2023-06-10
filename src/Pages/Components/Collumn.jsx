@@ -21,8 +21,6 @@ export default function Collumn(props)
 
         const receivedData = JSON.parse(e.dataTransfer.getData('task'));
 
-        //console.log(receivedData.father + ' ' + id);
-
         if(receivedData.father.toString() == id.toString())
         {
             return;
@@ -40,10 +38,12 @@ export default function Collumn(props)
         setSelectedBoard(copyBoard);
 
         deleteTask(receivedData.father.toString(),receivedData.id.toString());
+        setCurrentColor('rgba(0,0,0,0)');
+        
     }
     
     return(
-        <CollumnDiv id={id} c_color={currentColor} onDragOver={(e) => e.preventDefault()} onDrop={(e) => handleDragOver(e)} column_color={column_color}>
+        <CollumnDiv id={id} c_color={currentColor} onDragLeave={() => setCurrentColor('rgba(0,0,0,0)')} onDragEnd={() => setCurrentColor('rgba(0,0,0,0)')} onDragOver={(e) => {e.preventDefault(); setCurrentColor('rgba(255, 255, 255, 0.014)')}} onDrop={(e) => handleDragOver(e)} column_color={column_color}>
                 <div className="column-top">
                     <div className="column-color"></div>
                     <h1>{title} ({len})</h1>
