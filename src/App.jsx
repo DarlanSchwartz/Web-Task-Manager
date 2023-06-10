@@ -13,6 +13,7 @@ export default function App() {
   const [currentData, setCurrentData] = useState({...DATA});
   const [isViewingTask,setIsViewingTask] = useState(false);
   const [viewingTask,setViewingTask] = useState(null);
+  const [viewingTaskColId,setViewingTaskColId] = useState(null);
 
   function deleteTask(colID,taskID)
   {
@@ -31,7 +32,7 @@ export default function App() {
 
   return (
     <UserContext.Provider value={{currentData,setCurrentData}}>
-      <MainContext.Provider value={{sidebarOpen,setSidebarOpen,darkMode,setDarkMode,inCreationMode,setInCreationMode,selectedBoard,setSelectedBoard,isViewingTask,setIsViewingTask,viewingTask,setViewingTask,deleteTask}}>
+      <MainContext.Provider value={{sidebarOpen,setSidebarOpen,darkMode,setDarkMode,inCreationMode,setInCreationMode,selectedBoard,setSelectedBoard,isViewingTask,setIsViewingTask,viewingTask,setViewingTask,deleteTask,viewingTaskColId,setViewingTaskColId}}>
         <GlobalStyle/>
         <MainPage/>
       </MainContext.Provider>

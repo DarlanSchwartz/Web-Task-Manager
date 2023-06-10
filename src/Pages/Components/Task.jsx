@@ -4,7 +4,7 @@ import MainContext from "../../Contexts/MainContext";
 
 export default function Task(props)
 {
-    const {darkMode, setViewingTask,setIsViewingTask,selectedBoard,setSelectedBoard} = useContext(MainContext);
+    const {darkMode, setViewingTask,setIsViewingTask,selectedBoard,setSelectedBoard,setViewingTaskColId} = useContext(MainContext);
     const {task,col_id} = props;
     const [wantSwap , setWantSwap] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Task(props)
     }    
    
     return(
-        <TaskDiv col_id={col_id} onDrop={(e) => {e.preventDefault(); setWantSwap(false);}} onDragEnd={endDrag} onDragLeave={endDrag} onDragOver={(e)=> handleSwap(e)} show_border = {wantSwap.toString()} id={task.id} draggable onDragStart={(e) => handleDrag(e) } onClick={() => {setIsViewingTask(true); setViewingTask(task);}}>
+        <TaskDiv col_id={col_id} onDrop={(e) => {e.preventDefault(); setWantSwap(false);}} onDragEnd={endDrag} onDragLeave={endDrag} onDragOver={(e)=> handleSwap(e)} show_border = {wantSwap.toString()} id={task.id} draggable onDragStart={(e) => handleDrag(e) } onClick={() => {setIsViewingTask(true); setViewingTask(task); setViewingTaskColId(col_id);}}>
             <h1>{task.taskTitle}</h1>
             <p>{task.subtasks.filter((sub) => sub.done == true).length} of {task.subtasks.length} subtasks</p>
         </TaskDiv>

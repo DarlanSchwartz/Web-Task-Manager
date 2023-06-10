@@ -7,8 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 import {BsChevronDown} from 'react-icons/bs';
 import Subtask from "./Subtask";
 
-export default function ViewTask() {
-    const { viewingTask, setViewingTask, setIsViewingTask,selectedBoard} = useContext(MainContext);
+export default function ViewTask(props) {
+    const { viewingTask, setViewingTask, setIsViewingTask,selectedBoard,viewingTaskColId} = useContext(MainContext);
     const status = useRef();
 
     function stopViewingTask() {
@@ -30,7 +30,7 @@ export default function ViewTask() {
                 <p className="description">{viewingTask.taskDescription}</p>
                 <h2 className="subtasks-header">Subtasks ({viewingTask.subtasks.filter((sub) => sub.done == true).length} of {viewingTask.subtasks.length})</h2>
                 {viewingTask.subtasks.map((subtask) => {
-                    return <Subtask id={subtask.id} key={uuidv4()} title={subtask.subtaskTitle} done={subtask.done}/>
+                    return <Subtask viewing_task_col_id={viewingTaskColId} viewing_task_id ={viewingTask.id} id={subtask.id} key={uuidv4()} title={subtask.subtaskTitle} done={subtask.done}/>
                 })}
                 <h3>Status</h3>
                 <div className="select-container">
