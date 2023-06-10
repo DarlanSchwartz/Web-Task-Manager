@@ -14,10 +14,24 @@ export default function App() {
   const [isViewingTask,setIsViewingTask] = useState(false);
   const [viewingTask,setViewingTask] = useState(null);
 
+  function deleteTask(colID,taskID)
+  {
+    const copyBoard = {...selectedBoard};
+
+    copyBoard.columns.forEach(col =>{
+      if(col.id.toString() == colID)
+      {
+        col.tasks = col.tasks.filter(task => task.id.toString() !== taskID.toString());
+      }
+    })
+
+    setSelectedBoard(copyBoard);
+  }
+
 
   return (
     <UserContext.Provider value={{currentData,setCurrentData}}>
-      <MainContext.Provider value={{sidebarOpen,setSidebarOpen,darkMode,setDarkMode,inCreationMode,setInCreationMode,selectedBoard,setSelectedBoard,isViewingTask,setIsViewingTask,viewingTask,setViewingTask}}>
+      <MainContext.Provider value={{sidebarOpen,setSidebarOpen,darkMode,setDarkMode,inCreationMode,setInCreationMode,selectedBoard,setSelectedBoard,isViewingTask,setIsViewingTask,viewingTask,setViewingTask,deleteTask}}>
         <GlobalStyle/>
         <MainPage/>
       </MainContext.Provider>

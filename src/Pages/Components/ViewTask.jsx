@@ -15,18 +15,22 @@ export default function ViewTask() {
         setViewingTask(null);
         setIsViewingTask(false);
     }
+    function showDangerOptions()
+    {
+        
+    }
 
     return (
         <Modal onClick={stopViewingTask}>
             <ViewTaskDiv onClick={(e) => e.stopPropagation()}>
                 <div className="header">
                     <h1>{viewingTask.taskTitle}</h1>
-                    <BsThreeDotsVertical className="dots" />
+                    <BsThreeDotsVertical onClick={()=> showDangerOptions()} className="dots" />
                 </div>
                 <p className="description">{viewingTask.taskDescription}</p>
                 <h2 className="subtasks-header">Subtasks ({viewingTask.subtasks.filter((sub) => sub.done == true).length} of {viewingTask.subtasks.length})</h2>
                 {viewingTask.subtasks.map((subtask) => {
-                    return <Subtask key={uuidv4()} title={subtask.subtaskTitle} done={subtask.done}/>
+                    return <Subtask id={subtask.id} key={uuidv4()} title={subtask.subtaskTitle} done={subtask.done}/>
                 })}
                 <h3>Status</h3>
                 <div className="select-container">
@@ -120,12 +124,16 @@ const ViewTaskDiv = styled.div`
         input[type="checkbox"] {
             accent-color: #635fc7;
             cursor: pointer;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
         }
 
         P{
             font-size: 12px;
             font-weight: 700;
             line-height: 15px;
+            transition: all 200ms;
         }
 
         .subtask-done{

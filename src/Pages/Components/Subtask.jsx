@@ -1,14 +1,17 @@
-export default function Subtask({done , title})
-{
-    function changeSubtaskState()
-    {
+import { useEffect, useState } from "react";
 
-    }
+export default function Subtask({done , title , id})
+{
+    const [checked,setChecked] = useState(false);
+
+    useEffect( ()=>{
+        setChecked(done);
+    },[]);
 
     return (
-        <div className="subtask">
-            <input className="subtask-checkbox" type="checkbox" checked = {done} onChange={changeSubtaskState}></input>
-            <p className={!done ? '' : 'subtask-done'}>{title}</p>
+        <div id={id} className="subtask">
+            <input className="subtask-checkbox" type="checkbox" checked = {checked} onChange={(e) => setChecked(!checked)}></input>
+            <p className={!checked ? '' : 'subtask-done'}>{title}</p>
         </div>
     );
 }

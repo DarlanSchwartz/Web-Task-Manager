@@ -5,10 +5,16 @@ import MainContext from "../../Contexts/MainContext";
 export default function Task(props)
 {
     const {darkMode, setViewingTask,setIsViewingTask} = useContext(MainContext);
+    const {task,col_id} = props;
+
+    function handleDrag(e)
+    {
+        e.dataTransfer.setData('task',JSON.stringify({...task, father: col_id}));
+    }
     
-    const {task} = props;
+   
     return(
-        <TaskDiv onClick={() => {setIsViewingTask(true); setViewingTask(task);}}>
+        <TaskDiv id={task.id} draggable onDragStart={(e) => handleDrag(e) } onClick={() => {setIsViewingTask(true); setViewingTask(task);}}>
             <h1>{task.taskTitle}</h1>
             <p>{task.subtasks.filter((sub) => sub.done == true).length} of {task.subtasks.length} subtasks</p>
         </TaskDiv>

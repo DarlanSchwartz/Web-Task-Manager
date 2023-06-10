@@ -8,7 +8,7 @@ export default function Body() {
     return (
         <BodyDiv side_open={sidebarOpen.toString()}>
             {selectedBoard && selectedBoard.columns.length > 0 && selectedBoard.columns.map((col,index) => {
-                 return <Collumn key={index} column_color={col.color.toString()} len={col.tasks.length} title={col.columnTitle} tasks= {col.tasks}/>
+                 return <Collumn id={col.id} key={index} column_color={col.color.toString()} len={col.tasks.length} title={col.columnTitle} tasks= {col.tasks}/>
             })}
             <AddCollumnDiv>
                 <h1>+New Collumn</h1>

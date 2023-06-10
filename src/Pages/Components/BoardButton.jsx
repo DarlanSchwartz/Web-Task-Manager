@@ -8,7 +8,7 @@ export default function BoardButton(props)
     const {title, id ,columns} = props;
     const {selectedBoard, setSelectedBoard} = useContext(MainContext);
     return(
-        <SCBoardButton  onClick={() => setSelectedBoard({id:id,title:title,columns:columns})} selected = {selectedBoard.id == id} >
+        <SCBoardButton id={id}  onClick={() => setSelectedBoard({id:id,title:title,columns:columns})} selected = {selectedBoard.id == id} >
             <CiGrid32 fontSize={18} /> {title}
         </SCBoardButton>
     );

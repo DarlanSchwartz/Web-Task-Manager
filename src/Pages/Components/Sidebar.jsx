@@ -15,7 +15,7 @@ export default function Sidebar() {
 
     useEffect(() =>{
         // Maybe set here the current board?
-        setSelectedBoard({id:0,title:currentData.boards[0].boardTitle, columns:currentData.boards[0].columns});
+        setSelectedBoard({id:currentData.boards[0].id,title:currentData.boards[0].boardTitle, columns:currentData.boards[0].columns});
     },[])
 
     return (
@@ -27,7 +27,7 @@ export default function Sidebar() {
             <BoardsDiv>
                 <h1>All boards  ({currentData.boards.length})</h1>
                 {currentData && currentData.boards.length > 0 && currentData.boards.map((board,index) => {
-                    return <BoardButton key={index} id={index} title={board.boardTitle} columns={board.columns}/>;
+                    return <BoardButton key={index} id={board.id} title={board.boardTitle} columns={board.columns}/>;
                 })}
                 <CreateBoardButton ><CiGrid32 fontSize={18} className="icon"/> +Create New Board</CreateBoardButton>
             </BoardsDiv>
